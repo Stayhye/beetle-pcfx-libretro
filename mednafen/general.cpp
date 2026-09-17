@@ -19,6 +19,7 @@
 
 #include <string.h>
 #include <stdarg.h>
+#include <ctime>
 
 #include <sys/types.h>
 
@@ -146,6 +147,10 @@ void MDFN_rtrim(std::string &string)
 
   string.resize(new_len);
  }
+}
+
+int ps2_clock(void) {
+   return (int)(clock() / (CLOCKS_PER_SEC / 1000));
 }
 
 
