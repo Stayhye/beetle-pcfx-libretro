@@ -234,6 +234,19 @@ else ifeq ($(platform), psp1)
    FLAGS += -DPSP -G0
    STATIC_LINKING = 1
    EXTRA_INCLUDES := -I$(shell psp-config --pspsdk-path)/include
+   
+# PS2
+else ifeq ($(platform), ps2)
+   TARGET := $(TARGET_NAME)_libretro_$(platform).a
+   CC = mips64r5900el-ps2-elf-gcc$(EXE_EXT)
+   CXX = mips64r5900el-ps2-elf-g++$(EXE_EXT)
+   AR = mips64r5900el-ps2-elf-ar$(EXE_EXT)
+   PLATFORM_DEFINES := -DPS2 -DVIDEO_ABGR1555 -DIOAPI_NO_64
+   CFLAGS += -G0 -O3 -DPS2 -DABGR1555 
+   CXXFLAGS += -G0 -O3 -DPS2 -DABGR1555 
+   STATIC_LINKING = 1
+   VIDEO_RGB565 = 0
+   FRONTEND_SUPPORTS_RGB565 = 0
 
 # Vita
 else ifeq ($(platform), vita)
